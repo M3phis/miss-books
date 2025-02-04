@@ -36,3 +36,9 @@
 .book-details button:hover {
   background-color: #d63434;
 }
+
+.book-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
