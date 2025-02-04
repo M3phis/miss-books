@@ -41,6 +41,10 @@ export function getBooks() {
 
 function query(filterBy = {}) {
   return asyncStorageService.query("books").then((books) => {
+    if (!books[0]) {
+      _createBooks();
+    }
+
     if (filterBy.title) {
       const regExp = new RegExp(filterBy.title, "i");
       console.log("books before filter:", books);
@@ -56,7 +60,9 @@ function query(filterBy = {}) {
 
 function addBook() {}
 
-function getBook() {}
+function getBook(bookId) {
+  return asyncStorageService.get("books", bookId);
+}
 
 function updateBook() {}
 
@@ -65,7 +71,7 @@ function removeBook() {}
 function _createBooks() {
   const books = [];
   books.push(_createBook("OXeMG8wNskc", "book1", 4));
-  books.push(_createBook("OXeMaweqweskc", "book2", 6));
+  books.push(_createBook("hwrfq23", "book2", 6));
   books.push(_createBook("qegeqgq231", "book3", 5));
 
   storageService.saveToStorage("books", books);

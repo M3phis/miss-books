@@ -1,20 +1,23 @@
 const { useState, useRef, useEffect } = React;
 import { BookPreview } from "../cmps/BookPreview.jsx";
-export function BookList({ books }) {
+export function BookList({ books, onSelectedBookId }) {
   console.log(books);
   return (
-    <section className="user-preview">
-      {/* <BookFilter
-        filter={{ title: "book1", listPrice: 4 }}
-        onSetFilterBy={() => {
-          console.log("filtering");
-        }}
-      ></BookFilter> */}
+    <section className="book-list">
       {books.map((book) => {
+        console.log("book ID:", book.id);
         return (
-          <div key={book.id}>
-            <BookPreview book={book} key={book.id}></BookPreview>
-            <button className="book-details">Book Details</button>
+          <div className="book-card" key={book.id}>
+            <BookPreview book={book}></BookPreview>
+            <button
+              className="book-details"
+              onClick={() => {
+                onSelectedBookId(book.id);
+                console.log("book details: ", book.id);
+              }}
+            >
+              Book Details
+            </button>
           </div>
         );
       })}
