@@ -4,10 +4,12 @@ import { storageService } from "./storage.service.js";
 
 export const bookService = {
   getBooks,
+  query,
   getBook,
   addBook,
   updateBook,
   removeBook,
+  getDefaultFilter,
 };
 
 ///book model for refrence:
@@ -37,6 +39,21 @@ export function getBooks() {
     .catch((err) => console.log(err));
 }
 
+function query(filterBy = {}) {
+  return asyncStorageService.query("books").then((books) => {
+    if (filterBy.title) {
+      const regExp = new RegExp(filterBy.title, "i");
+      console.log("books before filter:", books);
+      books = books.filter((book) => regExp.test(book.title));
+      console.log("books after filter:", books);
+    }
+    if (filterBy.listPrice) {
+      books = books.filter((book) => book.listPrice >= filterBy.listPrice);
+    }
+    return Promise.resolve(books);
+  });
+}
+
 function addBook() {}
 
 function getBook() {}
@@ -58,4 +75,8 @@ function _createBook(id, title, listPrice) {
   const book = { id, title, listPrice };
 
   return book;
+}
+
+function getDefaultFilter() {
+  return { title: "", listPrice: "" };
 }
