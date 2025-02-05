@@ -1,0 +1,21 @@
+.book-preview {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.book-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.book-price {
+  font-size: 16px;
+  color: var(--clr1);
+  font-weight: bold;
+}
