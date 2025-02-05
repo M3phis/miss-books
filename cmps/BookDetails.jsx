@@ -28,16 +28,49 @@ export function BookDetails({ onSelectedBookId, selectedBookId }) {
           <p className="book-category">
             Category: {book.categories.join(", ")}
           </p>
-          <p className="book-year">Published: {book.publishedDate}</p>
+          <p className="book-year">
+            Published: {book.publishedDate}
+            <span>
+              {" "}
+              -
+              {new Date().getFullYear() - book.publishedDate > 10
+                ? "Vintage"
+                : new Date().getFullYear() - book.publishedDate < 1
+                ? "New"
+                : ""}
+            </span>
+          </p>
         </div>
       </div>
       <p className="book-description">{book.description}</p>
-      <p className="book-pagecount">📖 {book.pageCount} pages</p>
+      <p className="book-pagecount">
+        📖 {book.pageCount} pages{"  -  "}
+        <span className="book-pagecount-desc">
+          {book.pageCount > 500
+            ? "Serious Reading"
+            : book.pageCount > 200
+            ? "Decent Reading"
+            : "Light Reading"}
+        </span>
+      </p>
       <p className="book-language">
         🌎 Language: {book.language.toUpperCase()}
       </p>
       <p className="book-price">
-        💰 Price: {book.listPrice.amount} {book.listPrice.currencyCode}{" "}
+        💰 Price:{" "}
+        <span
+          className={
+            book.listPrice.amount > 150
+              ? "red"
+              : book.listPrice.amount < 20
+              ? "green"
+              : ""
+          }
+        >
+          {" "}
+          {book.listPrice.amount}{" "}
+        </span>{" "}
+        {book.listPrice.currencyCode}{" "}
         {book.listPrice.isOnSale && (
           <span className="on-sale">🔥 On Sale!</span>
         )}

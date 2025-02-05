@@ -84,3 +84,15 @@
   color: red;
   font-weight: bold;
 }
+
+book-pagecount-desc {
+  font-weight: bold;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
