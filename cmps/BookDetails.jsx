@@ -1,4 +1,5 @@
 import { bookService } from "../services/books.service.js";
+import { LongTxt } from "./LongTxt.jsx";
 const { useState, useEffect } = React;
 
 export function BookDetails({ onSelectedBookId, selectedBookId }) {
@@ -42,7 +43,6 @@ export function BookDetails({ onSelectedBookId, selectedBookId }) {
           </p>
         </div>
       </div>
-      <p className="book-description">{book.description}</p>
       <p className="book-pagecount">
         📖 {book.pageCount} pages{"  -  "}
         <span className="book-pagecount-desc">
@@ -75,6 +75,7 @@ export function BookDetails({ onSelectedBookId, selectedBookId }) {
           <span className="on-sale">🔥 On Sale!</span>
         )}
       </p>
+      <LongTxt className="book-description" txt={book.description}></LongTxt>
     </section>
   );
 }
