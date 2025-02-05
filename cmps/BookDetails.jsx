@@ -18,7 +18,7 @@ export function BookDetails({ onSelectedBookId, selectedBookId }) {
   return (
     <section className="book-details">
       <h1>Book title: {book.title}</h1>
-      <h1>Book Price: ${book.listPrice}</h1>
+      <h1>Book Price: ${book.listPrice.amount}</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quae
         fuga eveniet, quisquam ducimus modi optio in alias accusantium corrupti
