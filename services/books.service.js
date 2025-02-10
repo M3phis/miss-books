@@ -10,6 +10,7 @@ export const bookService = {
   updateBook,
   removeBook,
   getDefaultFilter,
+  getEmptyBook,
 };
 
 ///book model for refrence:
@@ -116,3 +117,24 @@ function _createBook(id, title, listPrice) {
 function getDefaultFilter() {
   return { title: "", listPrice: "" };
 }
+
+
+function getEmptyBook() {
+  return {
+    id: "",
+    title: "",
+    subtitle: "",
+    authors: [],
+    publishedDate: "",
+    description: "",
+    pageCount: "",
+    categories: [],
+    thumbnail: "",
+    language: "",
+    listPrice: {
+      amount: "",
+      currencyCode: "",
+      isOnSale: false,
+    },
+  };
+} 
