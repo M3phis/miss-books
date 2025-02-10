@@ -1,6 +1,6 @@
 const { useState, useRef, useEffect } = React;
 import { BookPreview } from "../cmps/BookPreview.jsx";
-export function BookList({ books, onSelectedBookId }) {
+export function BookList({ books, onSelectedBookId, onRemoveBook }) {
   console.log(books);
   return (
     <section className="book-list">
@@ -17,6 +17,15 @@ export function BookList({ books, onSelectedBookId }) {
               }}
             >
               Book Details
+            </button><button
+              className="book-details"
+              onClick={() => {
+                onRemoveBook(book.id);
+                console.log("removing book: ", book.id);
+              }}
+            >
+
+              Remove Book
             </button>
           </div>
         );

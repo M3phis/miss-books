@@ -66,10 +66,13 @@ function getBook(bookId) {
 
 function updateBook() {}
 
-function removeBook() {}
+function removeBook(bookId) {
+  return asyncStorageService.remove("books", bookId);
+  }
 
 function _createBooks2() {
   const books = [];
+
   books.push(_createBook("OXeMG8wNskc", "book1", 4));
   books.push(_createBook("hwrfq23", "book2", 6));
   books.push(_createBook("qegeqgq231", "book3", 5));

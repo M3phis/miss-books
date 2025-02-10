@@ -32,6 +32,12 @@ export function BookIdx() {
     console.log();
   }
 
+  function onRemoveBook(bookId) {
+    bookService.removeBook(bookId).then(() => {
+      loadBooks();
+    });
+  }
+
   if (!books) return "I AM LOADING";
   return (
     <section className="book-index">
@@ -48,6 +54,7 @@ export function BookIdx() {
           ></BookFilter>
           <BookList
             onSelectedBookId={onSetSelectedBookId}
+            onRemoveBook={onRemoveBook}
             books={books}
           ></BookList>
         </React.Fragment>
