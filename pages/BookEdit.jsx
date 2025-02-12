@@ -29,6 +29,9 @@ const navigate = useNavigate()
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
+        console.log('field', field)
+        console.log('value', value)
+        console.log('target', target.type)
         // value += ','
         switch (target.type) {
             case 'number':
@@ -39,9 +42,21 @@ const navigate = useNavigate()
             case 'checkbox':
                 value = target.checked
                 break
+            case 'text':
+                value = target.value
+                break
         }
 
-        // setBookToEdit(prevBookToEdit => ({ ...prevBookToEdit, [field]: value }))
+        setBookToEdit(prevBookToEdit => {
+            if (field === 'listPrice') {    
+                return {
+                    ...prevBookToEdit,listPrice: {...prevBookToEdit.listPrice,amount: value}
+                }
+            }
+            return {
+                ...prevBookToEdit, [field]: value
+            }
+        })
     }
 
 
@@ -63,7 +78,7 @@ const navigate = useNavigate()
 
 
 
-            <h1>{bookId ? 'Book Edit' : 'Book Add'}</h1>
+            <h1>{bookId ? 'Edit Book' : 'Add Book'}</h1>
 
 
             <form onSubmit={onSaveBook}>
@@ -72,12 +87,13 @@ const navigate = useNavigate()
                 <input type="text" id="title" value={title} onChange={handleChange} name="title" />
 
 
-                <label htmlFor="listedPrice">Listed Price:</label>
-                <input type="number" id="listedPrice" value={listPrice.amount || ''} onChange={handleChange} name="listedPrice" />
+                <label htmlFor="listPrice">Listed Price:</label>
+                <input type="number" id="listPrice" value={listPrice.amount || ''} onChange={handleChange} name="listPrice" />
         
 
 
-                <button>Save</button>
+                <button onClick={onSaveBook}>{bookId ? 'Save' : 'Add'}</button>
+                <button onClick={() => navigate('/books')}>Cancel</button>
             </form>
         </section>
 

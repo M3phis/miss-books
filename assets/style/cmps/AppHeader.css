@@ -1,8 +1,8 @@
-.app-header {
+.app-nav {
     background-color: #ffffff;
     padding: 1em;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     z-index: 1000;
 }
@@ -10,7 +10,8 @@
 .app-nav {
     display: flex;
     gap: 20px;
-    align-items: center;
+    width: 100%;
+    /* align-items: center; */
 }
 
 .app-nav a {

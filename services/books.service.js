@@ -65,7 +65,13 @@ function getBook(bookId) {
   return asyncStorageService.get("books", bookId);
 }
 
-function updateBook() {}
+function updateBook(book) {
+  if (book.id) {
+    return asyncStorageService.put("books", book);
+  } else {
+    return asyncStorageService.post("books", book);
+  }
+}
 
 function removeBook(bookId) {
   return asyncStorageService.remove("books", bookId);

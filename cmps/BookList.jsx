@@ -1,11 +1,13 @@
 const { useState, useRef, useEffect } = React;
 import { BookPreview } from "../cmps/BookPreview.jsx";
+const { useParams, useNavigate, Link } = ReactRouterDOM
+
 export function BookList({ books, onSelectedBookId, onRemoveBook }) {
   console.log(books);
   return (
     <section className="book-list">
       {books.map((book) => {
-        console.log("book ID:", book.id);
+        // console.log("book ID:", book.id);
         return (
           <div className="book-card" key={book.id}>
             <BookPreview book={book}></BookPreview>
@@ -17,7 +19,11 @@ export function BookList({ books, onSelectedBookId, onRemoveBook }) {
               }}
             >
               Book Details
-            </button><button
+            </button>
+            <button 
+            className="book-details">
+              <Link to={`/books/edit/${book.id}`}>Edit Book</Link> </button>
+            <button
               className="book-details"
               onClick={() => {
                 onRemoveBook(book.id);
